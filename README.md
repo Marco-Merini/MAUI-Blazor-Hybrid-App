@@ -62,6 +62,12 @@ Aplicativo web usando Blazor WebAssembly ou Blazor Server:
    - Ambas as plataformas possuem interfaces que se adaptam a diferentes tamanhos de tela.
    - A versão MAUI possui uma interface personalizada com logo da lanchonete.
 
+## 🔗 Endpoint da API
+
+```
+https://macoratti.net/Sistemas/lanches.json
+```
+
 ## Como Funciona o Compartilhamento de Código
 
 O projeto utiliza uma abordagem de compartilhamento de código através da biblioteca `LanchesLibrary`. Isso permite:
