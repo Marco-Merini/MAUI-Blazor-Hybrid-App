@@ -1,0 +1,71 @@
+﻿@page "/lanches"
+
+<h3>Lanches</h3>
+
+<div class="row"> 
+    <div class="col-md-4 mb-3">
+        <input class="form-control" placeholder="Name" @bind="model!.Name" />
+    </div>
+    <div class="col-md-4 mb-3">
+        <input class="form-control" placeholder="Description" @bind="model!.Description" />
+    </div>
+    <div class="col-md-4 mb-3">
+        <button class="btn btn-primary" @onclick="AddLanche">Incluir Lanche</button>
+    </div>
+    <div class="col-md-4 mb-3">
+        <button class="btn btn-danger" @onclick="ExibirAlerta">Alerta</button>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    @if (lanches?.Any() ?? false)
+                    {
+                        @foreach (var lanche in lanches)
+                        {
+                            <tr>
+                                <td>@lanche.Name</td>
+                                <td>@lanche.Description</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="text-center" colspan="2">Não existem lanches</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback ExibirAlerta { get; set; }
+
+    private List<Lanche>? lanches = new();
+    private Lanche? model = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        lanches = await lancheService.LoadLanchesAsync();
+    }
+
+    private void AddLanche()
+    {
+        lanches!.Add(model!);
+        model = new();
+    }
+}

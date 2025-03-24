@@ -1,0 +1,21 @@
+﻿@page "/"
+
+<h1>Bem-Vindo ao Lucas Burguer.</h1>
+<br />
+<h3>Onde a RESENHA e o seu LAZER são PRIORIDADES!</h3>
+
+<ListaLanches ExibirAlerta="ExibirAlerta"></ListaLanches>
+
+@code {
+    private async Task ExibirAlerta()
+    {
+        if(Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await Application.Current.MainPage.DisplayAlert("Alerta", "Alerta da aplicação MAUI : SEM INTERNET...VERIFIQUE SUA REDE", "OK");
+        }
+        else
+        {
+            await Application.Current.MainPage.DisplayAlert("Alerta", "Alerta da aplicação MAUI : INTERNET CONECTADA COM SUCESSO!", "OK");
+        }
+    }
+}
